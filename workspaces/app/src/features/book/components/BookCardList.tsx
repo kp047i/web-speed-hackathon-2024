@@ -1,4 +1,3 @@
-import moment from 'moment-timezone';
 import { Suspense } from 'react';
 
 import { Box } from '../../../foundation/components/Box';
@@ -11,7 +10,8 @@ import { useRelease } from '../../release/hooks/useRelease';
 import { BookCard } from './BookCard';
 
 const BookCardList = () => {
-  const todayStr = getDayOfWeekStr(moment());
+  const nowInJapan = new Date(new Date().getTime() + 9 * 60 * 60 * 1000); // UTC+9
+  const todayStr = getDayOfWeekStr(nowInJapan);
   const { data: release } = useRelease({ params: { dayOfWeek: todayStr } });
 
   return (

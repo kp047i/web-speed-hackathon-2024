@@ -3,7 +3,6 @@ import fs from 'node:fs/promises';
 import { Hono } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 import jsesc from 'jsesc';
-import moment from 'moment-timezone';
 import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import { ServerStyleSheet } from 'styled-components';
@@ -29,7 +28,8 @@ async function createInjectDataStr(): Promise<Record<string, unknown>> {
   const json: Record<string, unknown> = {};
 
   {
-    const dayOfWeek = getDayOfWeekStr(moment());
+    const nowInJapan = new Date(new Date().getTime() + 9 * 60 * 60 * 1000); // UTC+9
+    const dayOfWeek = getDayOfWeekStr(nowInJapan);
     const releases = await releaseApiClient.fetch({ params: { dayOfWeek } });
     json[unstable_serialize(releaseApiClient.fetch$$key({ params: { dayOfWeek } }))] = releases;
   }
@@ -91,7 +91,6 @@ async function createHTML({
       '<script id="inject-data-overview-text" type="application/json"></script>',
       `<script id="inject-data-overview-text" type="application/json">${OVERVIEW}</script>`,
     );
-  
 
   return content;
 }

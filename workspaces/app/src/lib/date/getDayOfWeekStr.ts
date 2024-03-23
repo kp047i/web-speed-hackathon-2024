@@ -1,12 +1,10 @@
-import type moment from 'moment-timezone';
+const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
-const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'] as const;
-
-export const getDayOfWeekStr = (date: moment.Moment) => {
-  const dayOfWeek = date.day();
-  const dayStr = days.at(dayOfWeek);
-  if (dayStr == null) {
+export function getDayOfWeekStr(date: Date) {
+  // 日本のタイムゾーンでの曜日を取得
+  const dayOfWeek = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(date).toLowerCase();
+  if (!days.includes(dayOfWeek)) {
     throw new Error('dayOfWeek is invalid');
   }
-  return dayStr;
-};
+  return dayOfWeek;
+}
