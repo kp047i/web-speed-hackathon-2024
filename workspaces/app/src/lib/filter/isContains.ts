@@ -8,10 +8,13 @@ function normalizeString(str: string) {
   return str.normalize('NFKC');
 }
 
+function hiraganaToKatakana(str: string): string {
+  return str.replace(/[\u3041-\u3096]/g, (match) => String.fromCharCode(match.charCodeAt(0) + 0x60));
+}
+
 export function isContains({ query, target }: Params) {
-  // クエリとターゲット文字列を正規化
-  const normalizedQuery = normalizeString(query);
-  const normalizedTarget = normalizeString(target);
+  const normalizedQuery = normalizeString(hiraganaToKatakana(query));
+  const normalizedTarget = normalizeString(hiraganaToKatakana(target));
 
   // 正規化した文字列での検索を行う
   return normalizedTarget.indexOf(normalizedQuery) !== -1;
