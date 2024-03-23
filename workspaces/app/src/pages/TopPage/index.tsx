@@ -1,11 +1,9 @@
-import _ from 'lodash';
 import moment from 'moment-timezone';
 import { Suspense, useId } from 'react';
 
 import { BookCard } from '../../features/book/components/BookCard';
 import { FeatureCardList } from '../../features/feature/components/FeatureCardList';
-import { RankingCard } from '../../features/ranking/components/RankingCard';
-import { useRankingList } from '../../features/ranking/hooks/useRankingList';
+import { RankingCardList } from '../../features/ranking/components/RankingCardList';
 import { useRelease } from '../../features/release/hooks/useRelease';
 import { Box } from '../../foundation/components/Box';
 import { Flex } from '../../foundation/components/Flex';
@@ -20,8 +18,6 @@ import { CoverSection } from './internal/CoverSection';
 const TopPage: React.FC = () => {
   const todayStr = getDayOfWeekStr(moment());
   const { data: release } = useRelease({ params: { dayOfWeek: todayStr } });
-
-  const { data: rankingList } = useRankingList({ query: {} });
 
   const pickupA11yId = useId();
   const rankingA11yId = useId();
@@ -50,11 +46,7 @@ const TopPage: React.FC = () => {
         </Text>
         <Spacer height={Space * 2} />
         <Box maxWidth="100%" overflowX="hidden" overflowY="hidden">
-          <Flex align="center" as="ul" direction="column" justify="center">
-            {_.map(rankingList, (ranking) => (
-              <RankingCard key={ranking.id} book={ranking.book} />
-            ))}
-          </Flex>
+          <RankingCardList />
         </Box>
       </Box>
 
@@ -67,9 +59,7 @@ const TopPage: React.FC = () => {
         <Spacer height={Space * 2} />
         <Box maxWidth="100%" overflowX="scroll" overflowY="hidden">
           <Flex align="stretch" gap={Space * 2} justify="flex-start">
-            {_.map(release?.books, (book) => (
-              <BookCard key={book.id} book={book} />
-            ))}
+            {release?.books?.map((book) => <BookCard key={book.id} book={book} />)}
           </Flex>
         </Box>
       </Box>
