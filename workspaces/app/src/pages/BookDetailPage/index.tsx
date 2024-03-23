@@ -85,7 +85,14 @@ const BookDetailPage: React.FC = () => {
           <_AuthorWrapper href={`/authors/${book.author.id}`}>
             {auhtorImageUrl != null && (
               <_AvatarWrapper>
-                <Image alt={book.author.name} height={32} objectFit="cover" src={auhtorImageUrl} width={32} />
+                <Image
+                  alt={book.author.name}
+                  height={32}
+                  loading="lazy"
+                  objectFit="cover"
+                  src={auhtorImageUrl}
+                  width={32}
+                />
               </_AvatarWrapper>
             )}
             <Text color={Color.MONO_100} typography={Typography.NORMAL14}>
@@ -107,7 +114,7 @@ const BookDetailPage: React.FC = () => {
       <section aria-label="エピソード一覧">
         <Flex align="center" as="ul" direction="column" justify="center">
           {episodeList.map((episode) => (
-            <EpisodeListItem key={episode.id} bookId={bookId} episodeId={episode.id} />
+            <EpisodeListItem key={episode.id} bookId={bookId} episode={episode} />
           ))}
           {episodeList.length === 0 && (
             <>
