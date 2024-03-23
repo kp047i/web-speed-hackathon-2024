@@ -1,21 +1,16 @@
 import { fileTypeFromBuffer } from 'file-type';
-import { Magika } from 'magika';
 
 const SUPPORTED_MAGIKA_LABEL_LIST = ['bmp', 'jpeg', 'png', 'webp'];
 const SUPPORTED_MIME_TYPE_LIST = ['image/bmp', 'image/jpeg', 'image/png', 'image/webp', 'image/avif', 'image/jxl'];
 
-const magika = new Magika();
-
-const initMagikaPromise = magika.load({
-  configURL: '/assets/magika/config.json',
-  modelURL: '/assets/magika/model.json',
-});
+function getFileExtension(file: File): string {
+  return file.name.split('.').pop() ?? '';
+}
 
 export async function isSupportedImage(image: File): Promise<boolean> {
-  await initMagikaPromise;
-  const prediction = await magika.identifyBytes(new Uint8Array(await image.arrayBuffer()));
+  const extension = getFileExtension(image);
 
-  if (SUPPORTED_MAGIKA_LABEL_LIST.includes(prediction.label)) {
+  if (SUPPORTED_MAGIKA_LABEL_LIST.includes(extension)) {
     return true;
   }
 
