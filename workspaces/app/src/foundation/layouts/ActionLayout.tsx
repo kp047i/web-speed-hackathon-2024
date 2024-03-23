@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Box } from '../components/Box';
 import { Container } from '../components/Container';
 import { Flex } from '../components/Flex';
-import { Footer } from '../components/Footer';
+import { Footer } from '../components/Footer/Footer';
 import { Color, Space } from '../styles/variables';
 
 const _Header = styled.header`

@@ -2,19 +2,13 @@ import { useSetAtom } from 'jotai';
 import React, { useId } from 'react';
 import styled from 'styled-components';
 
-import { DialogContentAtom } from '../atoms/DialogContentAtom';
-import { COMPANY } from '../constants/Company';
-import { CONTACT } from '../constants/Contact';
-import { OVERVIEW } from '../constants/Overview';
-import { QUESTION } from '../constants/Question';
-import { TERM } from '../constants/Term';
-import { Color, Space, Typography } from '../styles/variables';
-
-import { Box } from './Box';
-import { Button } from './Button';
-import { Flex } from './Flex';
-import { Spacer } from './Spacer';
-import { Text } from './Text';
+import { DialogContentAtom } from '../../atoms/DialogContentAtom';
+import { Color, Space, Typography } from '../../styles/variables';
+import { Box } from '../Box';
+import { Button } from '../Button';
+import { Flex } from '../Flex';
+import { Spacer } from '../Spacer';
+import { Text } from '../Text';
 
 const _Button = styled(Button)`
   color: ${Color.MONO_A};
@@ -25,6 +19,7 @@ const _Content = styled.section`
 `;
 
 export const Footer: React.FC = () => {
+  console.log('Footer');
   const [isClient, setIsClient] = React.useState(false);
 
   React.useEffect(() => {
@@ -39,7 +34,8 @@ export const Footer: React.FC = () => {
 
   const updateDialogContent = useSetAtom(DialogContentAtom);
 
-  const handleRequestToTermDialogOpen = () => {
+  const handleRequestToTermDialogOpen = async () => {
+    const Term = document.getElementById('inject-data-term-text')?.textContent;
     updateDialogContent(
       <_Content aria-labelledby={termDialogA11yId} role="dialog">
         <Text as="h2" color={Color.MONO_100} id={termDialogA11yId} typography={Typography.NORMAL16}>
@@ -47,13 +43,14 @@ export const Footer: React.FC = () => {
         </Text>
         <Spacer height={Space * 1} />
         <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {TERM}
+          {Term}
         </Text>
       </_Content>,
     );
   };
 
   const handleRequestToContactDialogOpen = () => {
+    const Contact = document.getElementById('inject-data-contact-text')?.textContent;
     updateDialogContent(
       <_Content aria-labelledby={contactDialogA11yId} role="dialog">
         <Text as="h2" color={Color.MONO_100} id={contactDialogA11yId} typography={Typography.NORMAL16}>
@@ -61,13 +58,14 @@ export const Footer: React.FC = () => {
         </Text>
         <Spacer height={Space * 1} />
         <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {CONTACT}
+          {Contact}
         </Text>
       </_Content>,
     );
   };
 
   const handleRequestToQuestionDialogOpen = () => {
+    const Question = document.getElementById('inject-data-question-text')?.textContent;
     updateDialogContent(
       <_Content aria-labelledby={questionDialogA11yId} role="dialog">
         <Text as="h2" color={Color.MONO_100} id={questionDialogA11yId} typography={Typography.NORMAL16}>
@@ -75,13 +73,14 @@ export const Footer: React.FC = () => {
         </Text>
         <Spacer height={Space * 1} />
         <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {QUESTION}
+          {Question}
         </Text>
       </_Content>,
     );
   };
 
   const handleRequestToCompanyDialogOpen = () => {
+    const Company = document.getElementById('inject-data-company-text')?.textContent;
     updateDialogContent(
       <_Content aria-labelledby={companyDialogA11yId} role="dialog">
         <Text as="h2" color={Color.MONO_100} id={companyDialogA11yId} typography={Typography.NORMAL16}>
@@ -89,13 +88,14 @@ export const Footer: React.FC = () => {
         </Text>
         <Spacer height={Space * 1} />
         <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {COMPANY}
+          {Company}
         </Text>
       </_Content>,
     );
   };
 
   const handleRequestToOverviewDialogOpen = () => {
+    const Overview = document.getElementById('inject-data-overview-text')?.textContent;
     updateDialogContent(
       <_Content aria-labelledby={overviewDialogA11yId} role="dialog">
         <Text as="h2" color={Color.MONO_100} id={overviewDialogA11yId} typography={Typography.NORMAL16}>
@@ -103,7 +103,7 @@ export const Footer: React.FC = () => {
         </Text>
         <Spacer height={Space * 1} />
         <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {OVERVIEW}
+          {Overview}
         </Text>
       </_Content>,
     );

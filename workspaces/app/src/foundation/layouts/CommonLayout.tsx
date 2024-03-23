@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Container } from '../components/Container';
-import { Footer } from '../components/Footer';
+import { Footer } from '../components/Footer/Footer';
 import { Space } from '../styles/variables';
 
 const _Content = styled.div`

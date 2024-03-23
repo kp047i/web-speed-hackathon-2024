@@ -17,6 +17,12 @@ import { getDayOfWeekStr } from '@wsh-2024/app/src/lib/date/getDayOfWeekStr';
 
 import { INDEX_HTML_PATH } from '../../constants/paths';
 
+import { COMPANY } from './Company';
+import { CONTACT } from './Contact';
+import { OVERVIEW } from './Overview';
+import { QUESTION } from './Question';
+import { TERM } from './Term';
+
 const app = new Hono();
 
 async function createInjectDataStr(): Promise<Record<string, unknown>> {
@@ -64,7 +70,28 @@ async function createHTML({
           minimal: true,
         })}
       </script>`,
+    )
+    .replaceAll(
+      '<script id="inject-data-term-text" type="application/json"></script>',
+      `<script id="inject-data-term-text" type="application/json">${TERM}</script>`,
+    )
+    .replaceAll(
+      '<script id="inject-data-contact-text" type="application/json"></script>',
+      `<script id="inject-data-contact-text" type="application/json">${CONTACT}</script>`,
+    )
+    .replaceAll(
+      '<script id="inject-data-question-text" type="application/json"></script>',
+      `<script id="inject-data-question-text" type="application/json">${QUESTION}</script>`,
+    )
+    .replaceAll(
+      '<script id="inject-data-company-text" type="application/json"></script>',
+      `<script id="inject-data-company-text" type="application/json">${COMPANY}</script>`,
+    )
+    .replaceAll(
+      '<script id="inject-data-overview-text" type="application/json"></script>',
+      `<script id="inject-data-overview-text" type="application/json">${OVERVIEW}</script>`,
     );
+  
 
   return content;
 }
