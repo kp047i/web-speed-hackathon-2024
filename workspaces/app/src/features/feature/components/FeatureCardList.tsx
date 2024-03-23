@@ -1,10 +1,11 @@
 import _ from 'lodash';
 
-import { FeatureCard } from '../../../features/feature/components/FeatureCard';
-import { useFeatureList } from '../../../features/feature/hooks/useFeatureList';
 import { Box } from '../../../foundation/components/Box';
 import { Flex } from '../../../foundation/components/Flex';
 import { Space } from '../../../foundation/styles/variables';
+import { useFeatureList } from '../hooks/useFeatureList';
+
+import { FeatureCard } from './FeatureCard';
 
 export const FeatureCardList: React.FC = () => {
   const { data: featureList } = useFeatureList({ query: {} });

@@ -3,6 +3,7 @@ import moment from 'moment-timezone';
 import { Suspense, useId } from 'react';
 
 import { BookCard } from '../../features/book/components/BookCard';
+import { FeatureCardList } from '../../features/feature/components/FeatureCardList';
 import { RankingCard } from '../../features/ranking/components/RankingCard';
 import { useRankingList } from '../../features/ranking/hooks/useRankingList';
 import { useRelease } from '../../features/release/hooks/useRelease';
@@ -15,7 +16,6 @@ import { Color, Space, Typography } from '../../foundation/styles/variables';
 import { getDayOfWeekStr } from '../../lib/date/getDayOfWeekStr';
 
 import { CoverSection } from './internal/CoverSection';
-import { FeatureCardList } from './internal/FeatureCardList';
 
 const TopPage: React.FC = () => {
   const todayStr = getDayOfWeekStr(moment());
