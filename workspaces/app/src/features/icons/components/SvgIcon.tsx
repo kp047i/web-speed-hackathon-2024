@@ -1,14 +1,29 @@
-import * as Icons from '@mui/icons-material';
+import Close from '@mui/icons-material/Close';
+import Favorite from '@mui/icons-material/Favorite';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import NavigateNext from '@mui/icons-material/NavigateNext';
+import Search from '@mui/icons-material/Search';
 
 type Props = {
   color: string;
   height: number;
-  type: keyof typeof Icons;
+  type: 'NavigateNext' | 'Close' | 'Favorite' | 'FavoriteBorder' | 'Search';
   width: number;
 };
 
 export const SvgIcon: React.FC<Props> = ({ color, height, type, width }) => {
   // eslint-disable-next-line
-  const Icon = Icons[type];
-  return <Icon style={{ color, height, width }} />;
+  // return <Icon style={{ color, height, width }} />;
+  switch (type) {
+    case 'Close':
+      return <Close style={{ color, height, width }} />;
+    case 'Favorite':
+      return <Favorite style={{ color, height, width }} />;
+    case 'FavoriteBorder':
+      return <FavoriteBorder style={{ color, height, width }} />;
+    case 'NavigateNext':
+      return <NavigateNext style={{ color, height, width }} />;
+    case 'Search':
+      return <Search style={{ color, height, width }} />;
+  }
 };
