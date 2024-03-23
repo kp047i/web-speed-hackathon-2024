@@ -22,8 +22,8 @@ import { useId, useMemo, useState } from 'react';
 import _ from 'underscore';
 import { create } from 'zustand';
 
+import { isContains } from '../../../../app/src/lib/filter/isContains';
 import { useBookList } from '../../features/books/hooks/useBookList';
-import { isContains } from '../../lib/filter/isContains';
 
 import { BookDetailModal } from './internal/BookDetailModal';
 import { CreateBookModal } from './internal/CreateBookModal';

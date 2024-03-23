@@ -22,8 +22,8 @@ import { useId, useMemo, useState } from 'react';
 import _ from 'underscore';
 import { create } from 'zustand';
 
+import { isContains } from '../../../../app/src/lib/filter/isContains';
 import { useAuthorList } from '../../features/authors/hooks/useAuthorList';
-import { isContains } from '../../lib/filter/isContains';
 
 import { AuthorDetailModal } from './internal/AuthorDetailModal';
 import { CreateAuthorModal } from './internal/CreateAuthorModal';
