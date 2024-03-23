@@ -81,7 +81,7 @@ const _Wrapper = styled.div<{
   display: grid;
   grid-auto-columns: ${({ $pageWidth }) => addUnitIfNeeded($pageWidth)};
   grid-auto-flow: column;
-  grid-template-rows: minmax(auto, 100%);
+  grid-template-rows: minmax(auto, 650px);
   height: 100%;
   overflow-x: scroll;
   overflow-y: hidden;
