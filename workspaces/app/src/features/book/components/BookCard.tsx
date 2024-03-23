@@ -17,6 +17,8 @@ const _Wrapper = styled(Link)`
   background-color: ${Color.MONO_A};
   max-width: 192px;
   border: 1px solid ${Color.MONO_30};
+  width: 192px;
+  height: 128px;
 `;
 
 const _ImgWrapper = styled.div`
@@ -43,11 +45,11 @@ const BookCard: React.FC<Props> = ({ book }) => {
 
   return (
     <_Wrapper href={`/books/${book.id}`}>
-      {imageUrl != null && (
-        <_ImgWrapper>
+      <_ImgWrapper>
+        {imageUrl != null && (
           <Image alt={book.image.alt} height={128} loading="lazy" objectFit="cover" src={imageUrl} width={192} />
-        </_ImgWrapper>
-      )}
+        )}
+      </_ImgWrapper>
 
       <Flex align="stretch" direction="column" flexGrow={1} gap={Space * 1} justify="space-between" p={Space * 2}>
         <Text color={Color.MONO_100} typography={Typography.NORMAL14} weight="bold">
@@ -55,11 +57,11 @@ const BookCard: React.FC<Props> = ({ book }) => {
         </Text>
 
         <Flex align="center" gap={Space * 1} justify="flex-end">
-          {authorImageUrl != null && (
-            <_AvatarWrapper>
+          <_AvatarWrapper>
+            {authorImageUrl != null && (
               <Image alt={book.author.name} height={32} objectFit="cover" src={authorImageUrl} width={32} />
-            </_AvatarWrapper>
-          )}
+            )}
+          </_AvatarWrapper>
           <Text color={Color.MONO_100} typography={Typography.NORMAL12}>
             {book.author.name}
           </Text>

@@ -1,24 +1,18 @@
-import moment from 'moment-timezone';
 import { Suspense, useId } from 'react';
 
-import { BookCard } from '../../features/book/components/BookCard';
+import { BookCardList } from '../../features/book/components/BookCardList';
 import { FeatureCardList } from '../../features/feature/components/FeatureCardList';
 import { RankingCardList } from '../../features/ranking/components/RankingCardList';
-import { useRelease } from '../../features/release/hooks/useRelease';
 import { Box } from '../../foundation/components/Box';
 import { Flex } from '../../foundation/components/Flex';
 import { Loading } from '../../foundation/components/Loading';
 import { Spacer } from '../../foundation/components/Spacer';
 import { Text } from '../../foundation/components/Text';
 import { Color, Space, Typography } from '../../foundation/styles/variables';
-import { getDayOfWeekStr } from '../../lib/date/getDayOfWeekStr';
 
 import { CoverSection } from './internal/CoverSection';
 
 const TopPage: React.FC = () => {
-  const todayStr = getDayOfWeekStr(moment());
-  const { data: release } = useRelease({ params: { dayOfWeek: todayStr } });
-
   const pickupA11yId = useId();
   const rankingA11yId = useId();
   const todayA11yId = useId();
@@ -58,9 +52,7 @@ const TopPage: React.FC = () => {
         </Text>
         <Spacer height={Space * 2} />
         <Box maxWidth="100%" overflowX="scroll" overflowY="hidden">
-          <Flex align="stretch" gap={Space * 2} justify="flex-start">
-            {release?.books?.map((book) => <BookCard key={book.id} book={book} />)}
-          </Flex>
+          <BookCardList />
         </Box>
       </Box>
     </Box>

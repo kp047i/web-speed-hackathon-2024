@@ -3,7 +3,6 @@ import { Suspense } from 'react';
 import { Box } from '../../../foundation/components/Box';
 import { Flex } from '../../../foundation/components/Flex';
 import { Loading } from '../../../foundation/components/Loading';
-import { Spacer } from '../../../foundation/components/Spacer';
 import { useRankingList } from '../hooks/useRankingList';
 
 import { RankingCard } from './RankingCard';
@@ -14,9 +13,6 @@ const RankingCardList: React.FC = () => {
   return (
     <Box maxWidth="100%" overflowX="hidden" overflowY="hidden">
       <Flex align="center" as="ul" direction="column" justify="center">
-        {/* {_.map(rankingList, (ranking) => (
-          <RankingCard key={ranking.id} book={ranking.book} />
-        ))} */}
         {rankingList?.map((ranking) => <RankingCard key={ranking.id} book={ranking.book} />)}
       </Flex>
     </Box>
