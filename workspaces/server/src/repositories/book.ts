@@ -14,7 +14,7 @@ import type { PatchBookRequestParams } from '@wsh-2024/schema/src/api/books/Patc
 import type { PatchBookResponse } from '@wsh-2024/schema/src/api/books/PatchBookResponse';
 import type { PostBookRequestBody } from '@wsh-2024/schema/src/api/books/PostBookRequestBody';
 import type { PostBookResponse } from '@wsh-2024/schema/src/api/books/PostBookResponse';
-import { author, book, episode, episodePage, feature, ranking } from '@wsh-2024/schema/src/models';
+import { author, book, episode, episodePage, feature, image, ranking } from '@wsh-2024/schema/src/models';
 
 import { getDatabase } from '../database/drizzle';
 
@@ -60,7 +60,11 @@ class BookRepository implements BookRepositoryInterface {
           },
           episodes: {
             columns: {
+              chapter: true,
+              description: true,
               id: true,
+              imageId: true,
+              name: true,
             },
           },
           image: {

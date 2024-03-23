@@ -8,6 +8,7 @@ export const GetEpisodeListResponseSchema = createSelectSchema(episode)
     chapter: true,
     description: true,
     id: true,
+    imageId: true,
     name: true,
     nameRuby: true,
   })
