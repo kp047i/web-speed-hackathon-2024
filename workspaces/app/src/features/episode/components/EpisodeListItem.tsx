@@ -40,8 +40,6 @@ type Props = {
 export const EpisodeListItem: React.FC<Props> = ({ bookId, episode }) => {
   const imageUrl = useImage({ height: 96, imageId: episode.imageId, width: 96 });
 
-  console.log({ episode });
-
   return (
     <_Wrapper>
       <_Link href={`/books/${bookId}/episodes/${episode.id}`}>
@@ -49,7 +47,7 @@ export const EpisodeListItem: React.FC<Props> = ({ bookId, episode }) => {
         <Flex align="flex-start" gap={Space * 2.5} justify="flex-start">
           {imageUrl != null && (
             <_ImgWrapper>
-              <Image alt={episode.name} height={96} loading='lazy' objectFit="cover" src={imageUrl} width={96}/>
+              <Image alt={episode.name} height={96} loading="lazy" objectFit="cover" src={imageUrl} width={96} />
             </_ImgWrapper>
           )}
           <Box width="100%">
