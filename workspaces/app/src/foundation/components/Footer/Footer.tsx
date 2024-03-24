@@ -1,21 +1,22 @@
 import { useSetAtom } from 'jotai';
-import React, { useId } from 'react';
+import React, { lazy, Suspense } from 'react';
 import styled from 'styled-components';
 
 import { DialogContentAtom } from '../../atoms/DialogContentAtom';
-import { Color, Space, Typography } from '../../styles/variables';
+import { Color, Space } from '../../styles/variables';
 import { Box } from '../Box';
 import { Button } from '../Button';
 import { Flex } from '../Flex';
-import { Spacer } from '../Spacer';
-import { Text } from '../Text';
+import { Loading } from '../Loading';
+
+const TermDialog = lazy(() => import('./TermDialog'));
+const ContactDialog = lazy(() => import('./ContactDialog'));
+const QuestionDialog = lazy(() => import('./QuestionDialog'));
+const CompanyDialog = lazy(() => import('./CompanyDialog'));
+const OverviewDialog = lazy(() => import('./OverviewDialog'));
 
 const _Button = styled(Button)`
   color: ${Color.MONO_A};
-`;
-
-const _Content = styled.section`
-  white-space: pre-line;
 `;
 
 export const Footer: React.FC = () => {
@@ -26,86 +27,46 @@ export const Footer: React.FC = () => {
     setIsClient(true);
   }, []);
 
-  const termDialogA11yId = useId();
-  const contactDialogA11yId = useId();
-  const questionDialogA11yId = useId();
-  const companyDialogA11yId = useId();
-  const overviewDialogA11yId = useId();
-
   const updateDialogContent = useSetAtom(DialogContentAtom);
 
   const handleRequestToTermDialogOpen = async () => {
-    const Term = document.getElementById('inject-data-term-text')?.textContent;
+    // const Term = document.getElementById('inject-data-term-text')?.textContent;
     updateDialogContent(
-      <_Content aria-labelledby={termDialogA11yId} role="dialog">
-        <Text as="h2" color={Color.MONO_100} id={termDialogA11yId} typography={Typography.NORMAL16}>
-          利用規約
-        </Text>
-        <Spacer height={Space * 1} />
-        <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {Term}
-        </Text>
-      </_Content>,
+      <Suspense fallback={<Loading />}>
+        <TermDialog />
+      </Suspense>,
     );
   };
 
   const handleRequestToContactDialogOpen = () => {
-    const Contact = document.getElementById('inject-data-contact-text')?.textContent;
     updateDialogContent(
-      <_Content aria-labelledby={contactDialogA11yId} role="dialog">
-        <Text as="h2" color={Color.MONO_100} id={contactDialogA11yId} typography={Typography.NORMAL16}>
-          お問い合わせ
-        </Text>
-        <Spacer height={Space * 1} />
-        <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {Contact}
-        </Text>
-      </_Content>,
+      <Suspense fallback={<Loading />}>
+        <ContactDialog />
+      </Suspense>,
     );
   };
 
   const handleRequestToQuestionDialogOpen = () => {
-    const Question = document.getElementById('inject-data-question-text')?.textContent;
     updateDialogContent(
-      <_Content aria-labelledby={questionDialogA11yId} role="dialog">
-        <Text as="h2" color={Color.MONO_100} id={questionDialogA11yId} typography={Typography.NORMAL16}>
-          Q&A
-        </Text>
-        <Spacer height={Space * 1} />
-        <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {Question}
-        </Text>
-      </_Content>,
+      <Suspense fallback={<Loading />}>
+        <QuestionDialog />
+      </Suspense>,
     );
   };
 
   const handleRequestToCompanyDialogOpen = () => {
-    const Company = document.getElementById('inject-data-company-text')?.textContent;
     updateDialogContent(
-      <_Content aria-labelledby={companyDialogA11yId} role="dialog">
-        <Text as="h2" color={Color.MONO_100} id={companyDialogA11yId} typography={Typography.NORMAL16}>
-          運営会社
-        </Text>
-        <Spacer height={Space * 1} />
-        <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {Company}
-        </Text>
-      </_Content>,
+      <Suspense fallback={<Loading />}>
+        <CompanyDialog />
+      </Suspense>,
     );
   };
 
   const handleRequestToOverviewDialogOpen = () => {
-    const Overview = document.getElementById('inject-data-overview-text')?.textContent;
     updateDialogContent(
-      <_Content aria-labelledby={overviewDialogA11yId} role="dialog">
-        <Text as="h2" color={Color.MONO_100} id={overviewDialogA11yId} typography={Typography.NORMAL16}>
-          Cyber TOONとは
-        </Text>
-        <Spacer height={Space * 1} />
-        <Text as="p" color={Color.MONO_100} typography={Typography.NORMAL12}>
-          {Overview}
-        </Text>
-      </_Content>,
+      <Suspense fallback={<Loading />}>
+        <OverviewDialog />
+      </Suspense>,
     );
   };
 
